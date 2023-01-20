@@ -7,6 +7,9 @@ use crate::config_provider::use_theme;
 pub fn use_styled() -> Classes {
     let theme = use_theme();
 
+    let padding_vertical = 0.0_f64.max((theme.control_height - theme.font_size * theme.alias.line_height) / 2.0 - theme.line_width);
+    let padding_horizontal = 8.0 - theme.line_width;
+
     let style = css!(
         r#"
 & {
@@ -24,6 +27,9 @@ pub fn use_styled() -> Classes {
     touch-action: manipulation;
     line-height: ${line_height};
     color: ${color_primary};
+
+    padding: ${padding_vertical}px ${padding_horizontal}px;
+    border-radius: ${border_radius}px;
 }
 
 &:disabled {
@@ -64,6 +70,9 @@ pub fn use_styled() -> Classes {
         color_fill_quaternary = theme.palettes.color_fill_quaternary,
         control_outline_width = theme.alias.control_outline_width,
         line_height = theme.alias.line_height,
+        padding_vertical = padding_vertical,
+        padding_horizontal = padding_horizontal,
+        border_radius = theme.border_radius,
     );
 
     classes!(style)

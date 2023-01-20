@@ -10,22 +10,22 @@ pub struct ThemeCore {
 
     // Font
     pub font_family: String,
-    pub font_size: usize,
+    pub font_size: f64,
 
     // Line
     pub line_width: f64,
     pub line_type: String,
 
     // Radius
-    pub border_radius: usize,
+    pub border_radius: f64,
 
     // Size
-    pub size_unit: usize,
-    pub size_step: usize,
-    pub size_popup_arrow: usize,
+    pub size_unit: f64,
+    pub size_step: f64,
+    pub size_popup_arrow: f64,
 
     // Control Base
-    pub control_height: usize,
+    pub control_height: f64,
 
     // zIndex
     pub z_index_base: usize,
@@ -52,22 +52,22 @@ impl Default for ThemeCore {
             font_family: r#"-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
 sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'"#
                 .into(),
-            font_size: 14,
+            font_size: 14.0,
 
             // Line
             line_width: 1.0,
             line_type: "solid".into(),
 
             // Radius
-            border_radius: 6,
+            border_radius: 6.0,
 
             // Size
-            size_unit: 4,
-            size_step: 4,
-            size_popup_arrow: 16,
+            size_unit: 4.0,
+            size_step: 4.0,
+            size_popup_arrow: 16.0,
 
             // Control Base
-            control_height: 32,
+            control_height: 32.0,
 
             // zIndex
             z_index_base: 0,

@@ -1,10 +1,11 @@
 use std::ops::{Deref, DerefMut};
 
-use super::{ThemeAlias, ThemeCore, ThemePalettes};
+use super::{ThemeAlias, ThemeColors, ThemeCore, ThemePalettes};
 
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct ThemeStore {
     pub core: ThemeCore,
+    pub colors: ThemeColors,
     pub palettes: ThemePalettes,
     pub alias: ThemeAlias,
 }
@@ -25,9 +26,12 @@ impl DerefMut for ThemeStore {
 
 impl ThemeStore {
     pub fn new() -> Self {
+        // let preset = PresetColorPalettes::light();
+
         let core = ThemeCore::default();
+        let colors = ThemeColors::new(&core);
         let palettes = ThemePalettes::default();
-        let alias = ThemeAlias::new(&core);
-        Self { core, palettes, alias }
+        let alias = ThemeAlias::new(&core, &colors, &palettes);
+        Self { core, colors, palettes, alias }
     }
 }

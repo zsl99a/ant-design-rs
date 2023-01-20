@@ -3,7 +3,7 @@ use std::ops::Deref;
 use stylist::yew::styled_component;
 use yew::{hook, html, use_context, use_state, Children, ContextProvider, Html, Properties, UseStateHandle};
 
-use crate::theme::{theme_light, ThemeStore};
+use crate::theme::{theme_light, ThemeAlias, ThemeColors, ThemeCore, ThemePalettes, ThemeStore};
 
 #[derive(Debug, PartialEq, Properties)]
 pub struct ConfigProviderProps {
@@ -13,9 +13,14 @@ pub struct ConfigProviderProps {
 #[styled_component]
 pub fn ConfigProvider(props: &ConfigProviderProps) -> Html {
     let theme_store = use_state(|| {
-        let mut theme = ThemeStore::new();
-        theme_light(&mut theme.palettes);
-        theme
+        let core = ThemeCore::default();
+        let colors = ThemeColors::new(&core);
+
+        let mut palettes = ThemePalettes::default();
+        theme_light(&mut palettes);
+
+        let alias = ThemeAlias::new(&core, &colors, &palettes);
+        ThemeStore { core, colors, palettes, alias }
     });
 
     let theme_ctx = ThemeContext::new(theme_store);
