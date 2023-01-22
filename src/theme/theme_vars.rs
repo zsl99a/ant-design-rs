@@ -1,5 +1,7 @@
+use serde::Serialize;
+
 // ThemeStore -- theme/themes/seed.ts
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Serialize)]
 pub struct ThemeVars {
     pub dark: bool,
 

@@ -1,6 +1,8 @@
+use serde::Serialize;
+
 use super::{generate, get_alpha_color, ThemeVars};
 
-#[derive(Debug, Clone, Default, PartialEq)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize)]
 pub struct ThemeColors {
     pub color_primary_bg: String,
     pub color_primary_bg_hover: String,

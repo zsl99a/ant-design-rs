@@ -1,6 +1,8 @@
+use serde::Serialize;
+
 use super::{get_alpha_color, get_solid_color};
 
-#[derive(Debug, Clone, PartialEq, Default)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize)]
 pub struct ThemeNeutral {
     pub color_text_base: String,
     pub color_bg_base: String,

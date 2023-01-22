@@ -1,6 +1,8 @@
+use serde::Serialize;
+
 use super::{get_font_sizes, ThemeColors, ThemeNeutral, ThemeVars};
 
-#[derive(Debug, Clone, PartialEq, Default)]
+#[derive(Debug, Clone, PartialEq, Default, Serialize)]
 pub struct ThemeAlias {
     // theme/themes/shared/genSizeMapToken.ts
     pub size_xxl: f64,

@@ -15,6 +15,7 @@ log = "0"
 wasm-logger = "0"
 
 serde = { version = "1", features = ["derive"] }
+serde_json = "1"
 yew = { version = "0", features = ["csr"] }
 stylist = { version = "0", features = ["yew_integration", "yew_use_media_query", "yew_use_style"] }
 palette = { version = "0", features = ["rand", "serializing"] }

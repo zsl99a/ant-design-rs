@@ -1,7 +1,7 @@
 use stylist::css;
 use yew::prelude::*;
 
-use ant_design_rs::{button::ButtonType, config_provider::use_theme, theme::generate, Button, ConfigProvider};
+use ant_design_rs::{button::ButtonType, config_provider::use_theme_export, theme::generate, Button, ConfigProvider};
 
 fn main() {
     wasm_logger::init(wasm_logger::Config::default());
@@ -20,14 +20,14 @@ fn root() -> Html {
 
 #[function_component(App)]
 fn app() -> Html {
-    let theme = use_theme();
+    let theme = use_theme_export();
 
     let colors = generate("#13C2C2", false, "").unwrap();
     let dark_colors = generate("#13C2C2", true, "").unwrap();
 
     html!(
-        <>
-            <div class={classes!(css!("padding: 8px; background-color: ${color_bg_base};", color_bg_base = theme.neutral.color_bg_base))}>
+        <div class={classes!(theme)}>
+            <div class={classes!(css!("padding: 8px; background-color: var(--color_bg_base);"))}>
                 <Button rtype={ButtonType::Default}>{"Default Button"}</Button>
                 <Button rtype={ButtonType::Primary}>{"Primary Button"}</Button>
                 <Button rtype={ButtonType::Dashed}>{"Dashed Button"}</Button>
@@ -37,7 +37,7 @@ fn app() -> Html {
 
             <div class={classes!(css!("height: 8px;"))}></div>
 
-            <div class={classes!(css!("padding: 8px; background-color: ${color_bg_spotlight};", color_bg_spotlight = theme.neutral.color_bg_spotlight))}>
+            <div class={classes!(css!("padding: 8px; background-color: var(--color_bg_spotlight);"))}>
                 <Button rtype={ButtonType::Default} ghost={true}>{"Default Button"}</Button>
                 <Button rtype={ButtonType::Primary} ghost={true}>{"Primary Button"}</Button>
                 <Button rtype={ButtonType::Dashed} ghost={true}>{"Dashed Button"}</Button>
@@ -47,7 +47,7 @@ fn app() -> Html {
 
             <div class={classes!(css!("height: 8px;"))}></div>
 
-            <div class={classes!(css!("padding: 8px; background-color: ${color_bg_base};", color_bg_base = theme.neutral.color_bg_base))}>
+            <div class={classes!(css!("padding: 8px; background-color: var(--color_bg_base);"))}>
                 <Button rtype={ButtonType::Default} danger={true}>{"Default Button"}</Button>
                 <Button rtype={ButtonType::Primary} danger={true}>{"Primary Button"}</Button>
                 <Button rtype={ButtonType::Dashed} danger={true}>{"Dashed Button"}</Button>
@@ -57,7 +57,7 @@ fn app() -> Html {
 
             <div class={classes!(css!("height: 8px;"))}></div>
 
-            <div class={classes!(css!("padding: 8px; background-color: ${color_bg_base};", color_bg_base = theme.neutral.color_bg_base))}>
+            <div class={classes!(css!("padding: 8px; background-color: var(--color_bg_base);"))}>
                 <Button rtype={ButtonType::Default} disabled={true}>{"Default Button"}</Button>
                 <Button rtype={ButtonType::Primary} disabled={true}>{"Primary Button"}</Button>
                 <Button rtype={ButtonType::Dashed} disabled={true}>{"Dashed Button"}</Button>
@@ -90,6 +90,6 @@ fn app() -> Html {
                     </div>
                 }
             }).collect::<Html>()}
-        </>
+        </div>
     )
 }
