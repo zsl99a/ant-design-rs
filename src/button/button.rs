@@ -35,6 +35,11 @@ pub fn button(props: &ButtonProps) -> Html {
         None => "button".into(),
     };
 
+    let disabled = match &props.disabled {
+        Some(disabled) => *disabled,
+        None => false,
+    };
+
     html! {
         <button
             class={classes!(
@@ -42,7 +47,7 @@ pub fn button(props: &ButtonProps) -> Html {
                 props.class.clone(),
             )}
             type={html_type}
-
+            disabled={disabled}
             // onclick={props.onclick}
         >
             <span>{for props.children.iter()}</span>

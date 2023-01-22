@@ -29,14 +29,14 @@ pub fn config_provider(props: &ConfigProviderProps) -> Html {
 //
 
 #[hook]
-pub(crate) fn use_theme() -> ThemeContext {
+pub fn use_theme() -> ThemeContext {
     use_context::<ThemeContext>().unwrap()
 }
 
 //
 
 #[derive(Debug, Clone)]
-pub(crate) struct ThemeContext {
+pub struct ThemeContext {
     inner: UseStateHandle<ThemeStore>,
 }
 

@@ -164,16 +164,19 @@ pub fn generate(color: &str, dark: bool, bg_color: &str) -> Result<[String; 10]>
 }
 
 fn get_hue(hsv: &Hsv, level: usize, light: bool) -> f32 {
-    let mut hue = 0.0;
     let orig_hue = hsv.hue.to_positive_degrees();
 
-    if orig_hue > 60.0 && orig_hue <= 240.0 {
+    let hue = if orig_hue > 60.0 && orig_hue <= 240.0 {
         if light {
-            hue = orig_hue - HUE_STEP * level as f32;
+            orig_hue - HUE_STEP * level as f32
         } else {
-            hue = orig_hue + HUE_STEP * level as f32;
+            orig_hue + HUE_STEP * level as f32
         }
-    }
+    } else if light {
+        orig_hue + HUE_STEP * level as f32
+    } else {
+        orig_hue - HUE_STEP * level as f32
+    };
 
     ((hue + 360.0) % 360.0).round()
 }
