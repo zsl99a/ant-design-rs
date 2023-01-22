@@ -1,0 +1,25 @@
+{
+  "name": "ant-design-rs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zsl99a/ant-design-rs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zsl99a/ant-design-rs/issues"
+  },
+  "homepage": "https://github.com/zsl99a/ant-design-rs#readme",
+  "scripts": {
+    "lintcss": "stylelint '**/*.css' --fix"
+  },
+  "devDependencies": {
+    "stylelint": "^14.16.1",
+    "stylelint-config-prettier": "^9.0.4",
+    "stylelint-config-standard": "^29.0.0",
+    "stylelint-order": "^6.0.1"
+  }
+}

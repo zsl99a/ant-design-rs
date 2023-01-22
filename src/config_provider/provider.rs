@@ -12,16 +12,7 @@ pub struct ConfigProviderProps {
 
 #[function_component(ConfigProvider)]
 pub fn config_provider(props: &ConfigProviderProps) -> Html {
-    let theme_store = use_memo(
-        |_| {
-            // let store = ThemeStore::new(ThemeVars::default());
-            // log::debug!("{store:#?}");
-            // store
-
-            ThemeStore::new(ThemeVars::default())
-        },
-        (),
-    );
+    let theme_store = use_memo(|_| ThemeStore::new(ThemeVars::default()), ());
 
     html! {
         <ContextProvider<Rc<ThemeStore>> context={theme_store}>
