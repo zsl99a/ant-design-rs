@@ -1,28 +1,49 @@
-use stylist::yew::styled_component;
 use yew::{prelude::*, Classes};
 
 use super::ButtonType;
-use crate::button::use_styled;
+use crate::{button::use_styled, theme::ControlSize};
 
 #[derive(Clone, PartialEq, Properties)]
-pub struct Props {
-    pub r#type: Option<ButtonType>,
+pub struct ButtonProps {
+    pub block: Option<bool>,
+    pub danger: Option<bool>,
+    pub disabled: Option<bool>,
+    pub ghost: Option<bool>,
+
+    pub icon: Option<Children>,
+    pub loading: Option<bool>,
+
+    pub size: Option<ControlSize>,
+
+    pub href: Option<String>,
+    pub target: Option<String>,
+
+    pub html_type: Option<String>,
+    pub rtype: Option<ButtonType>,
+
     pub class: Option<Classes>,
     pub children: Children,
+    // pub onclick: Option<Rc<dyn IntoEventCallback<MouseEvent>>>,
 }
 
-#[styled_component]
-pub fn Button(props: &Props) -> Html {
-    let styled = use_styled();
+#[function_component(Button)]
+pub fn button(props: &ButtonProps) -> Html {
+    let styled = use_styled(props);
+
+    let html_type = match &props.html_type {
+        Some(html_type) => html_type.clone(),
+        None => "button".into(),
+    };
 
     html! {
         <button
             class={classes!(
                 styled,
-                props.r#type.clone(),
                 props.class.clone(),
             )}
-            type="button"
+            type={html_type}
+
+            // onclick={props.onclick}
         >
             <span>{for props.children.iter()}</span>
         </button>

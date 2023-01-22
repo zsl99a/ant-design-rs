@@ -1,6 +1,8 @@
 // ThemeStore -- theme/themes/seed.ts
 #[derive(Debug, Clone, PartialEq)]
-pub struct ThemeCore {
+pub struct ThemeVars {
+    pub dark: bool,
+
     // Color
     pub color_primary: String,
     pub color_success: String,
@@ -22,7 +24,6 @@ pub struct ThemeCore {
     // Size
     pub size_unit: f64,
     pub size_step: f64,
-    pub size_popup_arrow: f64,
 
     // Control Base
     pub control_height: f64,
@@ -38,9 +39,11 @@ pub struct ThemeCore {
     pub wireframe: bool,
 }
 
-impl Default for ThemeCore {
+impl Default for ThemeVars {
     fn default() -> Self {
         Self {
+            dark: false,
+
             // Color
             color_primary: "#1677ff".into(),
             color_success: "#52c41a".into(),
@@ -64,7 +67,6 @@ sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Colo
             // Size
             size_unit: 4.0,
             size_step: 4.0,
-            size_popup_arrow: 16.0,
 
             // Control Base
             control_height: 32.0,
@@ -80,4 +82,12 @@ sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Colo
             wireframe: false,
         }
     }
+}
+
+#[derive(Debug, Clone, Default, PartialEq)]
+pub enum ControlSize {
+    #[default]
+    Default,
+    Large,
+    Small,
 }

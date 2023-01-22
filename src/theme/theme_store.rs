@@ -1,37 +1,42 @@
 use std::ops::{Deref, DerefMut};
 
-use super::{ThemeAlias, ThemeColors, ThemeCore, ThemePalettes};
+use super::{theme_dark, theme_light, ThemeAlias, ThemeColors, ThemeNeutral, ThemeVars};
 
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct ThemeStore {
-    pub core: ThemeCore,
+    pub vars: ThemeVars,
     pub colors: ThemeColors,
-    pub palettes: ThemePalettes,
+    pub neutral: ThemeNeutral,
     pub alias: ThemeAlias,
 }
 
 impl Deref for ThemeStore {
-    type Target = ThemeCore;
+    type Target = ThemeVars;
 
     fn deref(&self) -> &Self::Target {
-        &self.core
+        &self.vars
     }
 }
 
 impl DerefMut for ThemeStore {
     fn deref_mut(&mut self) -> &mut Self::Target {
-        &mut self.core
+        &mut self.vars
     }
 }
 
 impl ThemeStore {
-    pub fn new() -> Self {
-        // let preset = PresetColorPalettes::light();
+    pub fn new(vars: ThemeVars) -> Self {
+        let colors = ThemeColors::new(&vars);
 
-        let core = ThemeCore::default();
-        let colors = ThemeColors::new(&core);
-        let palettes = ThemePalettes::default();
-        let alias = ThemeAlias::new(&core, &colors, &palettes);
-        Self { core, colors, palettes, alias }
+        let mut neutral = ThemeNeutral::default();
+        if vars.dark {
+            theme_dark(&mut neutral);
+        } else {
+            theme_light(&mut neutral);
+        }
+
+        let alias = ThemeAlias::new(&vars, &colors, &neutral);
+
+        Self { vars, colors, neutral, alias }
     }
 }
